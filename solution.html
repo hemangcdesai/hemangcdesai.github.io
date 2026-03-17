@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Solution — TalentScoring</title>
+  <meta name="description" content="TalentScoring uses voice-based AI screening in native languages to bring consistent, affordable hiring to India's blue-collar workforce." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* How it works */
+    .how-section {
+      padding: 6rem 5%;
+      background: var(--warm-white);
+    }
+    .how-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .how-inner h2 { margin-bottom: 1rem; }
+    .how-inner > p { max-width: 600px; margin-bottom: 4rem; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 2.2rem;
+      left: calc(12.5% + 1rem);
+      right: calc(12.5% + 1rem);
+      height: 2px;
+      background: var(--border);
+      z-index: 0;
+    }
+
+    .step {
+      text-align: center;
+      padding: 0 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-num {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      font-weight: 800;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.2rem;
+    }
+
+    .step h3 { font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .step p { font-size: 0.85rem; }
+
+    /* Voice section */
+    .voice-section {
+      background: var(--cream);
+      padding: 6rem 5%;
+    }
+    .voice-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .voice-text h2 { margin-bottom: 1rem; }
+    .voice-text .divider { margin-bottom: 1.5rem; }
+
+    .question-samples {
+      background: var(--ink);
+      border-radius: 12px;
+      padding: 2rem;
+      overflow: hidden;
+    }
+
+    .qs-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6b8090;
+      margin-bottom: 1.5rem;
+    }
+
+    .question-item {
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .question-item:last-child { border-bottom: none; }
+
+    .question-hindi {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      color: var(--accent-light);
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .question-english {
+      font-size: 0.82rem;
+      color: #6b8090;
+    }
+
+    /* Benefits */
+    .benefits-section {
+      padding: 6rem 5%;
+      background: var(--warm-white);
+    }
+    .benefits-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .benefits-inner h2 { margin-bottom: 1rem; }
+    .benefits-inner > p { max-width: 600px; margin-bottom: 3rem; }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .benefit-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 2rem;
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .benefit-icon-box {
+      width: 48px;
+      height: 48px;
+      background: var(--accent-pale);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .benefit-card h3 { font-size: 1rem; margin-bottom: 0.4rem; }
+    .benefit-card p { font-size: 0.88rem; }
+
+    /* For employers section */
+    .employer-section {
+      background: var(--teal);
+      padding: 6rem 5%;
+    }
+    .employer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .employer-inner .section-label { color: rgba(255,255,255,0.5); }
+    .employer-inner h2 { color: white; margin-bottom: 1rem; }
+    .employer-inner > p { color: rgba(255,255,255,0.75); max-width: 600px; margin-bottom: 3rem; }
+
+    .employer-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .employer-col {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 2rem;
+    }
+
+    .employer-col h3 { color: white; margin-bottom: 0.8rem; font-size: 1rem; }
+    .employer-col p { color: rgba(255,255,255,0.7); font-size: 0.9rem; }
+    .employer-col .eco-icon { font-size: 1.6rem; margin-bottom: 0.8rem; }
+
+    .cta-row { margin-top: 3rem; display: flex; gap: 1rem; }
+
+    @media (max-width: 900px) {
+      .steps { grid-template-columns: 1fr 1fr; }
+      .steps::before { display: none; }
+      .voice-inner { grid-template-columns: 1fr; }
+      .benefits-grid { grid-template-columns: 1fr; }
+      .employer-cols { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .steps { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Talent<span>Scoring</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="problem.html">The Problem</a></li>
+    <li><a href="solution.html" class="active">The Solution</a></li>
+    <li><a href="market.html">Act Now</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="section-label">The Solution</div>
+      <h1>If They Can't Write a Résumé, They Can Still Make a Phone Call</h1>
+      <p class="lead">TalentScoring uses voice-based AI screening in native languages — accessible to every worker, affordable for every employer.</p>
+    </div>
+  </div>
+
+  <section class="how-section">
+    <div class="how-inner">
+      <div class="section-label">How It Works</div>
+      <h2>Four Steps to a Better Hire</h2>
+      <p>No app. No résumé. No barrier. Just an incoming phone call that gives employers the insight they need.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Job is Advertised</h3>
+          <p>Instead of an email address, the job ad displays a telephone number for applicants to call.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Candidate Calls</h3>
+          <p>The worker calls in their native language — no smartphone, no email, no document required.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>AI Screens</h3>
+          <p>Pre-scripted questions are asked. Responses are scored for performance, accountability, and retention potential.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <h3>Best Candidates Surface</h3>
+          <p>Hiring managers only meet those who pass screening. Every minute is spent on qualified candidates.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="voice-section">
+    <div class="voice-inner">
+      <div class="voice-text">
+        <div class="section-label">Native Language First</div>
+        <h2>Screening in the Language Workers Actually Speak</h2>
+        <div class="divider"></div>
+        <p>No electrician, cook, or delivery rider finds a conversation in their native language invasive. It's the most natural format possible.</p>
+        <p>TalentScoring's question sets are designed for real-world blue-collar contexts — probing for work history, family situation, reliability signals, and accountability indicators through structured, conversational prompts.</p>
+        <p>Follow-up questions adapt dynamically based on earlier responses, giving a richer picture of each candidate without adding friction.</p>
+      </div>
+      <div>
+        <div class="question-samples">
+          <div class="qs-label">Sample screening questions</div>
+          <div class="question-item">
+            <div class="question-hindi">क्या आपने पहले कभी काम किया है?</div>
+            <div class="question-english">Have you worked before?</div>
+          </div>
+          <div class="question-item">
+            <div class="question-hindi">घर पे कौन कौन है?</div>
+            <div class="question-english">Who is at home? (Family situation)</div>
+          </div>
+          <div class="question-item">
+            <div class="question-hindi">आखिरी नौकरी क्यों छोड़ी?</div>
+            <div class="question-english">Why did you leave your last job?</div>
+          </div>
+          <div class="question-item">
+            <div class="question-hindi">आप कब से काम शुरू कर सकते हैं?</div>
+            <div class="question-english">When can you start work?</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="benefits-section">
+    <div class="benefits-inner">
+      <div class="section-label">Why TalentScoring</div>
+      <h2>Built for the Realities of Blue-Collar Hiring</h2>
+      <p>Every design decision in TalentScoring reflects the actual constraints and needs of employers hiring at the ground level.</p>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon-box">💰</div>
+          <div>
+            <h3>Near ₹0 Fee per Hire at Scale</h3>
+            <p>Contemporary AI makes it possible to screen hundreds of candidates at a fraction of traditional costs — viable even for high-volume, entry-level positions. Early adopters get early bird pricing.</p>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon-box">⚖️</div>
+          <div>
+            <h3>Consistent & Fair</h3>
+            <p>Every candidate answers the same questions in the same order. Bias from village networks and family ties is eliminated by design.</p>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon-box">📊</div>
+          <div>
+            <h3>Predictive Scoring</h3>
+            <p>Responses are scored against validated indicators of performance, accountability, and retention — not just gut feel.</p>
+          </div>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon-box">⏱️</div>
+          <div>
+            <h3>Saves Hiring Manager Time</h3>
+            <p>Managers only meet candidates who've already passed a structured screen. No more unproductive first interviews.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="employer-section">
+    <div class="employer-inner">
+      <div class="section-label">For Employers</div>
+      <h2>Designed Around Your Hiring Reality</h2>
+      <p>TalentScoring works for any employer hiring blue-collar or gig workers at scale — from logistics companies to construction firms, hospitality groups to domestic staffing agencies.</p>
+      <div class="employer-cols">
+        <div class="employer-col">
+          <div class="eco-icon">🏗️</div>
+          <h3>High-Volume Sectors</h3>
+          <p>Construction, manufacturing, logistics, e-commerce delivery, transportation — where you hire tens or hundreds of workers and consistency matters at scale.</p>
+        </div>
+        <div class="employer-col">
+          <div class="eco-icon">🍽️</div>
+          <h3>Service Sectors</h3>
+          <p>Hospitality, domestic services, office support — where reliability and soft skills matter as much as technical experience, and retention is a persistent challenge.</p>
+        </div>
+      </div>
+      <div class="cta-row">
+        <a href="contact.html" class="btn btn-outline-white">Request a Demo →</a>
+        <a href="market.html" class="btn btn-outline-white">See the Market →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="problem.html">The Problem</a>
+      <a href="solution.html">The Solution</a>
+      <a href="market.html">Act Now</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <p>© 2025 ShortestPath Private Limited. All rights reserved.<br>
+    TalentScoring is a product of <a href="#">ShortestPath Pvt. Ltd.</a>, makers of CareerNodes.</p>
+  </div>
+</footer>
+
+</body>
+</html>

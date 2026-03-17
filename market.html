@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Act Now — TalentScoring</title>
+  <meta name="description" content="250 million Indian workers. Zero machine-mediated screening tools. TalentScoring is built for the largest untapped hiring market in the world." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Opportunity section */
+    .opportunity-section {
+      padding: 6rem 5%;
+      background: var(--warm-white);
+    }
+    .opportunity-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .opportunity-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      margin-top: 3rem;
+    }
+
+    .opp-text h2 { margin-bottom: 1rem; }
+    .opp-text .divider { margin-bottom: 1.5rem; }
+
+    .big-stat-box {
+      background: var(--ink);
+      border-radius: 12px;
+      padding: 3rem;
+      text-align: center;
+    }
+
+    .big-stat-box .big-num {
+      font-size: 6rem;
+      font-weight: 800;
+      color: var(--accent-light);
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+    .big-stat-box .big-label {
+      color: #8aa0b0;
+      font-size: 1rem;
+      margin-top: 0.8rem;
+      line-height: 1.5;
+    }
+
+    .big-stat-box .big-divider {
+      width: 40px;
+      height: 2px;
+      background: rgba(255,255,255,0.1);
+      margin: 1.5rem auto;
+    }
+
+    .big-stat-row {
+      display: flex;
+      justify-content: space-around;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .mini-stat .stat-number { font-size: 2rem; color: var(--cream); }
+    .mini-stat .stat-label { color: #6b8090; font-size: 0.8rem; }
+
+    /* Sectors */
+    .sectors-section {
+      background: var(--cream);
+      padding: 6rem 5%;
+    }
+    .sectors-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .sectors-inner h2 { margin-bottom: 1rem; }
+    .sectors-inner > p { max-width: 600px; margin-bottom: 3rem; }
+
+    .sectors-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .sector-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.8rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .sector-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .sector-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+    .sector-card h3 { font-size: 1rem; margin-bottom: 0.4rem; }
+    .sector-card p { font-size: 0.85rem; }
+
+    /* Contrast section */
+    .contrast-section {
+      background: var(--ink);
+      padding: 6rem 5%;
+    }
+    .contrast-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .contrast-inner .section-label { color: var(--accent-light); }
+    .contrast-inner h2 { color: var(--cream); margin-bottom: 1rem; }
+    .contrast-inner > p { color: #8aa0b0; max-width: 600px; margin-bottom: 3rem; }
+
+    .contrast-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .contrast-table th {
+      background: rgba(255,255,255,0.08);
+      color: #aab8c2;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 1rem 1.5rem;
+      text-align: left;
+    }
+
+    .contrast-table td {
+      padding: 1rem 1.5rem;
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: #8aa0b0;
+    }
+
+    .contrast-table tr:hover td { background: rgba(255,255,255,0.03); }
+
+    .contrast-table .col-ts { color: var(--cream); }
+
+    td.check { color: #4caf82; font-weight: 700; }
+    td.cross { color: #c84b2f; }
+
+    /* Why now */
+    .why-now-section {
+      background: var(--warm-white);
+      padding: 6rem 5%;
+    }
+    .why-now-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .why-now-inner h2 { margin-bottom: 1rem; }
+    .why-now-inner > p { max-width: 600px; margin-bottom: 3rem; }
+
+    .why-now-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .why-card {
+      border-left: 3px solid var(--accent);
+      padding: 1.5rem;
+      background: white;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .why-card h3 { font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .why-card p { font-size: 0.85rem; }
+
+    /* CTA */
+    .market-cta {
+      background: var(--accent);
+      padding: 5rem 5%;
+      text-align: center;
+    }
+    .market-cta-inner { max-width: 700px; margin: 0 auto; }
+    .market-cta h2 { color: white; margin-bottom: 1rem; }
+    .market-cta p { color: rgba(255,255,255,0.8); margin-bottom: 2rem; }
+
+    @media (max-width: 900px) {
+      .opportunity-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .sectors-grid, .why-now-cards { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .sectors-grid, .why-now-cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Talent<span>Scoring</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="problem.html">The Problem</a></li>
+    <li><a href="solution.html">The Solution</a></li>
+    <li><a href="market.html" class="active">Act Now</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="section-label">Act Now</div>
+      <h1>Start Selecting from a 250-Million Talent Pool</h1>
+      <p class="lead">India's blue-collar and gig workforce has never had access to machine-mediated screening. TalentScoring changes that — for employers ready to hire smarter, today.</p>
+    </div>
+  </div>
+
+  
+
+  <section class="sectors-section">
+    <div class="sectors-inner">
+      <div class="section-label">Target Sectors</div>
+      <h2>Where TalentScoring Operates</h2>
+      <p>The résuméless workforce spans nearly every sector of India's physical economy. These are TalentScoring's primary markets.</p>
+      <div class="sectors-grid">
+        <div class="sector-card">
+          <div class="sector-icon">🏗️</div>
+          <h3>Construction</h3>
+          <p>India's construction sector employs tens of millions of daily wage workers — many hired through unstructured, informal means.</p>
+        </div>
+        <div class="sector-card">
+          <div class="sector-icon">🏭</div>
+          <h3>Manufacturing</h3>
+          <p>Factory floors require reliable, consistent workers. Screening for attendance, reliability, and fit is critical — and currently ad hoc.</p>
+        </div>
+        <div class="sector-card">
+          <div class="sector-icon">📦</div>
+          <h3>Logistics & E-Commerce</h3>
+          <p>India's delivery economy is growing at pace. Consistent screening for delivery riders and warehouse workers is a clear need.</p>
+        </div>
+        <div class="sector-card">
+          <div class="sector-icon">🚗</div>
+          <h3>Transportation</h3>
+          <p>Drivers and fleet operators need reliable, accountable hires. Voice screening can assess communication, availability, and work history.</p>
+        </div>
+        <div class="sector-card">
+          <div class="sector-icon">🍽️</div>
+          <h3>Hospitality</h3>
+          <p>Hotels, restaurants, and catering operations need workers who are reliable and client-facing — traits that voice screening can reveal.</p>
+        </div>
+        <div class="sector-card">
+          <div class="sector-icon">🏠</div>
+          <h3>Domestic Services</h3>
+          <p>Cooks, cleaners, security guards, and other home staff — among the most trust-sensitive and least screened hires in India.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contrast-section">
+    <div class="contrast-inner">
+      <div class="section-label">Competitive Landscape</div>
+      <h2>No One Else is Solving This</h2>
+      <p>Existing ATS vendors have no answer for the résuméless workforce. TalentScoring occupies entirely uncontested ground.</p>
+      <table class="contrast-table">
+        <thead>
+          <tr>
+            <th>Capability</th>
+            <th>ATS Vendors</th>
+            <th>TalentScoring</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Screens résumé-based candidates</td>
+            <td class="check">✓ Yes</td>
+            <td class="col-ts cross">✗ Not focus</td>
+          </tr>
+          <tr>
+            <td>Screens candidates without résumés</td>
+            <td class="cross">✗ No</td>
+            <td class="col-ts check">✓ Core product</td>
+          </tr>
+          <tr>
+            <td>Voice-based, native language screening</td>
+            <td class="cross">✗ No</td>
+            <td class="col-ts check">✓ Yes</td>
+          </tr>
+          <tr>
+            <td>Near ₹0 fee per hire at scale</td>
+            <td class="cross">✗ No</td>
+            <td class="col-ts check">✓ Yes</td>
+          </tr>
+          <tr>
+            <td>Works without smartphone or email</td>
+            <td class="cross">✗ No</td>
+            <td class="col-ts check">✓ Yes</td>
+          </tr>
+          <tr>
+            <td>Designed for blue-collar / gig hiring</td>
+            <td class="cross">✗ No</td>
+            <td class="col-ts check">✓ Yes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  
+
+  <section class="market-cta">
+    <div class="market-cta-inner">
+      <div class="section-label" style="color:rgba(255,255,255,0.5);">Get Involved</div>
+      <h2>Be Among the First Employers on TalentScoring</h2>
+      <p>We're onboarding early employer partners ahead of our full launch. Get in touch to request a demo or learn more.</p>
+      <a href="contact.html" class="btn btn-outline-white">Request a Demo →</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="problem.html">The Problem</a>
+      <a href="solution.html">The Solution</a>
+      <a href="market.html">Act Now</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <p>© 2025 ShortestPath Private Limited. All rights reserved.<br>
+    TalentScoring is a product of <a href="#">ShortestPath Pvt. Ltd.</a>, makers of CareerNodes.</p>
+  </div>
+</footer>
+
+</body>
+</html>

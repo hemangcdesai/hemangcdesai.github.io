@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — TalentScoring</title>
+  <meta name="description" content="Request a demo or get in touch with the TalentScoring team." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .contact-section {
+      padding: 6rem 5%;
+      background: var(--warm-white);
+    }
+    .contact-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .contact-info h2 { margin-bottom: 1rem; }
+    .contact-info .divider { margin-bottom: 1.5rem; }
+
+    .contact-detail {
+      display: flex;
+      gap: 0.8rem;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-detail-icon {
+      width: 38px;
+      height: 38px;
+      background: var(--accent-pale);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-detail-text strong {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-detail-text span {
+      font-size: 0.95rem;
+      color: var(--ink);
+    }
+
+    .contact-note {
+      background: var(--accent-pale);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 1.2rem 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .contact-note p {
+      font-size: 0.88rem;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    /* Form */
+    .contact-form-wrap {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .form-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .form-subtitle {
+      font-size: 0.88rem;
+      color: var(--ink-muted);
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.92rem;
+      color: var(--ink);
+      background: var(--warm-white);
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(200,75,47,0.1);
+      background: white;
+    }
+
+    textarea { resize: vertical; min-height: 130px; }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%233d4f5c' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.8rem center;
+      padding-right: 2.5rem;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      margin-top: 0.5rem;
+    }
+
+    .submit-btn:hover {
+      background: var(--accent-light);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(200,75,47,0.3);
+    }
+
+    .submit-btn:active { transform: translateY(0); }
+
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Success / Error states */
+    .form-message {
+      display: none;
+      padding: 1rem 1.2rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      font-weight: 500;
+    }
+
+    .form-message.success {
+      background: #e8f5ee;
+      color: #1a6b3c;
+      border: 1px solid #b8dfc6;
+      display: block;
+    }
+
+    .form-message.error {
+      background: var(--accent-pale);
+      color: var(--accent);
+      border: 1px solid #f0c4bb;
+      display: block;
+    }
+
+    .form-note {
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    /* Formspree notice */
+    .formspree-setup {
+      background: #fffbf0;
+      border: 1px solid #e8d870;
+      border-radius: 8px;
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 2rem;
+      font-size: 0.85rem;
+      color: #6b5a00;
+    }
+    .formspree-setup strong { display: block; margin-bottom: 0.3rem; }
+    .formspree-setup code {
+      background: rgba(0,0,0,0.07);
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      font-family: monospace;
+    }
+
+    @media (max-width: 900px) {
+      .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Talent<span>Scoring</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="problem.html">The Problem</a></li>
+    <li><a href="solution.html">The Solution</a></li>
+    <li><a href="market.html">Act Now</a></li>
+    <li><a href="contact.html" class="nav-cta active">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="section-label">Contact</div>
+      <h1>Ready to Screen Smarter?</h1>
+      <p class="lead">Request a demo, ask a question, or tell us about your hiring needs. We'd love to hear from you.</p>
+    </div>
+  </div>
+
+  <section class="contact-section">
+    <div class="contact-inner">
+
+      <div class="contact-info">
+        <div class="section-label">Get In Touch</div>
+        <h2>Let's Talk About Your Hiring Needs</h2>
+        <div class="divider"></div>
+        <p>Whether you're hiring 10 workers or 10,000, TalentScoring is designed to bring consistency and accountability to your screening process.</p>
+
+        <div class="contact-detail">
+          <div class="contact-detail-icon">✉️</div>
+          <div class="contact-detail-text">
+            <strong>Email</strong>
+            <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="15737a607b7170676655667d7a67617066616574617d3b7c7b">[email&#160;protected]</a></span>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="contact-detail-icon">🏢</div>
+          <div class="contact-detail-text">
+            <strong>Company</strong>
+            <span>ShortestPath Private Limited</span>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="contact-detail-icon">🌏</div>
+          <div class="contact-detail-text">
+            <strong>Operations</strong>
+            <span>India (29 states served)</span>
+          </div>
+        </div>
+
+        <div class="contact-note">
+          <p>TalentScoring is currently in pre-launch. We're onboarding early employer partners. Fill out the form and we'll be in touch shortly.</p>
+        </div>
+      </div>
+
+      <div class="contact-form-wrap">
+        <!--
+          FORMSPREE SETUP INSTRUCTIONS (remove this block once done):
+          1. Sign up at https://formspree.io
+          2. Create a new form and set the destination to founders@shortestpath.in
+          3. Copy your unique form endpoint — it looks like: https://formspree.io/f/XXXXXXXX
+          4. Replace YOUR_FORMSPREE_ENDPOINT below with that URL
+          5. Delete this comment block
+        -->
+
+        <div class="form-title">Request a Demo</div>
+        <div class="form-subtitle">We typically respond within one business day.</div>
+
+        <form id="contactForm" action="https://formspree.io/f/xreyolzk" method="POST">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Your Name *</label>
+              <input type="text" id="name" name="name" placeholder="Rahul Sharma" required />
+            </div>
+            <div class="form-group">
+              <label for="company">Company / Organisation *</label>
+              <input type="text" id="company" name="company" placeholder="Acme Logistics Pvt. Ltd." required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Work Email *</label>
+            <input type="email" id="email" name="email" placeholder="rahul@acmelogistics.in" required />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" />
+          </div>
+
+          <div class="form-group">
+            <label for="sector">Hiring Sector</label>
+            <select id="sector" name="sector">
+              <option value="" disabled selected>Select your sector</option>
+              <option>Construction</option>
+              <option>Manufacturing</option>
+              <option>Logistics / E-Commerce Delivery</option>
+              <option>Transportation</option>
+              <option>Hospitality</option>
+              <option>Domestic Services</option>
+              <option>Office Services</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="volume">Approximate Hiring Volume per Month</label>
+            <select id="volume" name="volume">
+              <option value="" disabled selected>Select hiring volume</option>
+              <option>Fewer than 10 hires</option>
+              <option>10–50 hires</option>
+              <option>50–200 hires</option>
+              <option>200–1,000 hires</option>
+              <option>1,000+ hires</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Tell us about your hiring challenge</label>
+            <textarea id="message" name="message" placeholder="Briefly describe your current hiring process and what you'd like to improve..."></textarea>
+          </div>
+
+          <!-- Hidden field for Formspree reply-to -->
+          <input type="hidden" name="_replyto" value="" />
+          <input type="hidden" name="_subject" value="New TalentScoring Demo Request" />
+
+          <button type="submit" class="submit-btn" id="submitBtn">Send Message →</button>
+
+          <div id="successMsg" class="form-message">
+            ✓ Thank you! We've received your message and will be in touch within one business day.
+          </div>
+          <div id="errorMsg" class="form-message">
+            ✗ Something went wrong. Please try again or email us directly at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4e28213b202a2b3c3d0e3d26213c3a2b3d3a3e2f3a26602720">[email&#160;protected]</a>
+          </div>
+
+          <p class="form-note">By submitting this form you agree to be contacted by the TalentScoring team. We do not share your information with third parties.</p>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="problem.html">The Problem</a>
+      <a href="solution.html">The Solution</a>
+      <a href="market.html">Act Now</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <p>© 2025 ShortestPath Private Limited. All rights reserved.<br>
+    TalentScoring is a product of <a href="#">ShortestPath Pvt. Ltd.</a>, makers of CareerNodes.</p>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const form = document.getElementById('contactForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const successMsg = document.getElementById('successMsg');
+  const errorMsg = document.getElementById('errorMsg');
+
+  // Sync email to hidden _replyto field
+  document.getElementById('email').addEventListener('input', function() {
+    form.querySelector('[name="_replyto"]').value = this.value;
+  });
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+    successMsg.style.display = 'none';
+    errorMsg.style.display = 'none';
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        form.reset

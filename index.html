@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TalentScoring — Machine-Mediated Screening</title>
+  <meta name="description" content="TalentScoring brings consistent, AI-powered voice screening to the 250 million Indian workers who don't have a résumé." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Hero */
+    .hero {
+      background: var(--ink);
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 4rem 5%;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 80% 50%, rgba(200,75,47,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(26,107,107,0.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(200,75,47,0.15);
+      border: 1px solid rgba(200,75,47,0.3);
+      border-radius: 100px;
+      padding: 0.35rem 1rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      color: var(--cream);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent-light);
+    }
+
+    .hero .lead {
+      color: #8aa0b0;
+      margin-bottom: 2.5rem;
+      font-size: 1.15rem;
+    }
+
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* Hero card */
+    .hero-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 2rem;
+      backdrop-filter: blur(4px);
+    }
+
+    .hero-card-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-stat {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .hero-stat:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .hero-stat .stat-number { color: var(--cream); font-size: 2.4rem; }
+    .hero-stat .stat-label { color: #6b8090; }
+
+    /* Scroll indicator */
+    .scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      color: #3d5060;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    .scroll-hint svg { opacity: 0.4; }
+
+    /* Value props */
+    .value-section {
+      padding: 6rem 5%;
+      background: var(--cream);
+    }
+
+    .value-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .value-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .value-header h2 { margin-bottom: 1rem; }
+    .value-header p { max-width: 540px; margin: 0 auto; }
+
+    .value-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .value-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--accent);
+    }
+    .value-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .value-card h3 { margin-bottom: 0.6rem; font-size: 1.1rem; }
+    .value-card p { font-size: 0.9rem; }
+
+    /* Hero card — native language */
+    .value-card-hero {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 3rem;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding: 2.5rem;
+      background: var(--ink);
+      border-color: var(--ink);
+    }
+    .value-card-hero::before { background: var(--accent); }
+    .value-card-hero:hover { transform: none; }
+
+    .value-hero-left h3 { color: var(--cream); }
+    .value-hero-left p { color: #8aa0b0; font-size: 1rem; }
+
+    .question-preview {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+    .qp-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #6b8090;
+      margin-bottom: 1rem;
+    }
+    .qp-hindi {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      color: var(--accent-light);
+      font-size: 1.05rem;
+      margin-bottom: 0.3rem;
+    }
+    .qp-english {
+      font-size: 0.82rem;
+      color: #6b8090;
+    }
+    .qp-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.07);
+      margin: 1rem 0;
+    }
+
+    /* Secondary 2-col grid */
+    .value-grid-secondary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .value-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--accent-pale);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+      font-size: 1.4rem;
+    }
+
+    /* Two-world section */
+    .two-worlds {
+      padding: 6rem 5%;
+      background: var(--warm-white);
+    }
+
+    .two-worlds-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .worlds-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      margin-top: 3rem;
+    }
+
+    .world {
+      padding: 3rem;
+    }
+
+    .world-resume {
+      background: #1a2a38;
+      color: white;
+    }
+
+    .world-resumeless {
+      background: var(--accent);
+      color: white;
+    }
+
+    .world-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-bottom: 1rem;
+    }
+
+    .world h3 { font-size: 1.5rem; color: white; margin-bottom: 0.8rem; }
+    .world p { color: rgba(255,255,255,0.75); font-size: 0.95rem; }
+    .world .world-num { font-size: 3.5rem; font-weight: 800; opacity: 0.15; line-height: 1; margin-bottom: 0.5rem; }
+
+    /* CTA Banner */
+    .cta-banner {
+      background: var(--teal);
+      padding: 5rem 5%;
+      text-align: center;
+    }
+
+    .cta-banner-inner { max-width: 700px; margin: 0 auto; }
+    .cta-banner h2 { color: white; margin-bottom: 1rem; }
+    .cta-banner p { color: rgba(255,255,255,0.75); margin-bottom: 2rem; }
+
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-card { display: none; }
+      .value-card-hero { grid-template-columns: 1fr; }
+      .value-hero-right { display: none; }
+      .value-grid-secondary { grid-template-columns: 1fr; }
+      .worlds-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Talent<span>Scoring</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="problem.html">The Problem</a></li>
+    <li><a href="solution.html">The Solution</a></li>
+    <li><a href="market.html">Act Now</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <section class="hero">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <span>●</span> Launching Soon
+        </div>
+        <h1>Machine-Mediated Screening for <em>Every</em> Indian Worker</h1>
+        <p class="lead">TalentScoring brings consistent, affordable, AI-powered voice screening to the 250 million Indians who don't have a résumé — but are ready to work.</p>
+        <div class="hero-actions">
+          <a href="contact.html" class="btn btn-primary">Request a Demo</a>
+          <a href="problem.html" class="btn btn-outline-white">Learn More</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-label">By the numbers</div>
+        <div class="hero-stat">
+          <div class="stat-number">250M</div>
+          <div class="stat-label">Indian workers without a résumé</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-number">Near ₹0</div>
+          <div class="stat-label">Fee per hire at scale — early bird pricing for early adopters</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-number">2,000+</div>
+          <div class="stat-label">Customers already trust ShortestPath</div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 9l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+  </section>
+
+  <section class="value-section">
+    <div class="value-inner">
+      <div class="value-header">
+        <div class="section-label">What We Do</div>
+        <h2>Hire Smarter. Hire Fairer.</h2>
+        <p>Replace guesswork and word-of-mouth with structured, voice-based screening that predicts performance, accountability, and retention.</p>
+      </div>
+      <!-- Native language: hero card spanning full width -->
+      <div class="value-card value-card-hero">
+        <div class="value-hero-left">
+          <div class="value-icon" style="width:64px;height:64px;font-size:1.8rem;">📞</div>
+          <h3 style="font-size:1.6rem;margin-bottom:0.8rem;">Screening in the Language Workers Actually Speak</h3>
+          <p style="font-size:1.05rem;max-width:520px;">No electrician, cook, or delivery rider finds a conversation in their native language invasive. TalentScoring screens candidates through a simple phone call — questions asked and answered in Hindi or any regional language, with zero barrier to entry. No app. No résumé. No literacy requirement. Just a conversation that reveals the hire behind the voice.</p>
+          <a href="solution.html" style="display:inline-block;margin-top:1.2rem;font-size:0.85rem;font-weight:700;color:var(--accent);text-decoration:none;letter-spacing:0.04em;">See how it works →</a>
+        </div>
+        <div class="value-hero-right">
+          <div class="question-preview">
+            <div class="qp-label">Sample screening question</div>
+            <div class="qp-hindi">क्या आपने पहले कभी काम किया है?</div>
+            <div class="qp-english">"Have you worked before?"</div>
+            <div class="qp-divider"></div>
+            <div class="qp-hindi">घर पे कौन कौन है?</div>
+            <div class="qp-english">"Who is at home?"</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Supporting cards: smaller, secondary -->
+      <div class="value-grid-secondary">
+        <div class="value-card">
+          <div class="value-icon">🤖</div>
+          <h3>AI-Powered Scoring</h3>
+          <p>Responses are automatically scored for fit, accountability, and retention potential. Hiring managers only meet the best.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">⚖️</div>
+          <h3>Consistent & Unbiased</h3>
+          <p>Every candidate answers the same questions. No more hiring based on village, family, or friendship networks.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="two-worlds">
+    <div class="two-worlds-inner">
+      <div class="section-label">Two Worlds of Hiring</div>
+      <h2>We Solve the Overwhelming Majority That's Been Ignored</h2>
+      <div class="worlds-grid">
+        <div class="world world-resume">
+          <div class="world-num">100M</div>
+          <div class="world-tag">Already Served</div>
+          <h3>The Résumé World</h3>
+          <p>White-collar workers, university graduates. Served by ATS vendors like iCIMS, Taleo, Greenhouse, and Workday — and by our sister product, CareerNodes. Less than a third of India's workforce.</p>
+        </div>
+        <div class="world world-resumeless">
+          <div class="world-num">250M</div>
+          <div class="world-tag">TalentScoring's Focus</div>
+          <h3>The Résuméless World</h3>
+          <p>Construction workers, delivery riders, cooks, factory hands. No résumé. No ATS. More than two-thirds of India's workforce — and entirely invisible to modern hiring technology. This is where TalentScoring comes in.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <div class="cta-banner-inner">
+      <div class="section-label" style="color:rgba(255,255,255,0.5);">Get Started</div>
+      <h2>Ready to Screen Smarter?</h2>
+      <p>Join the waitlist or request a demo. TalentScoring is launching soon for employers across India.</p>
+      <a href="contact.html" class="btn btn-outline-white">Request a Demo →</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="problem.html">The Problem</a>
+      <a href="solution.html">The Solution</a>
+      <a href="market.html">Act Now</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <p>© 2025 ShortestPath Private Limited. All rights reserved.<br>
+    TalentScoring is a product of <a href="#">ShortestPath Pvt. Ltd.</a>, makers of CareerNodes.</p>
+  </div>
+</footer>
+
+</body>
+</html>
