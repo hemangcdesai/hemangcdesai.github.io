@@ -244,6 +244,19 @@
       .matrix-corner { display: none; }
       .matrix-col-header, .matrix-row-header { grid-column: unset; }
     }
+    .prof {
+      background-color: rgba(241,244,248,var(--bs-bg-opacity))!important
+    }
+    .professionals {
+      max-width: 100%;
+      height: auto;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    .pro {
+      text-align:center;
+      color: #C84B2F;
+    }
   </style>
 </head>
 <body>
@@ -309,7 +322,7 @@
   </section>
 
   <section class="stats-section">
-    <div class="stats-inner">
+    <div class="stats-inner prof">
       <div class="section-label">CareerNodes — Our Track Record</div>
       <div class="stats-row">
         <div class="stat-box">
@@ -329,6 +342,11 @@
           <div class="stat-label">Months since launch</div>
         </div>
       </div>
+    </div>
+    <div>
+      <h4 class="pro">Our customers include professionals from ...</h4>
+      <img src="./professionals.png" class="professionals">
+      <p class="pro">and hundreds of similar companies</p>
     </div>
   </section>
 
